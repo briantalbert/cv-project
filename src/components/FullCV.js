@@ -1,9 +1,9 @@
 import React from "react"
 
-export default function FullCV() {
+export default function FullCV(props) {
     return (
-        <div class="full-cv">
-            <span>full cv rendering</span>
+        <div className="full-cv">
+            full cv
         </div>
     )
 }
