@@ -1,81 +1,83 @@
 import React from "react"
-import { v4 as uuidv4 } from 'uuid';
 
 export default function WorkExpForm(props) {
-    const workExperience = props.workExperience;
-    const setWorkExperience = props.setWorkExperience;
-    const jobList = props.jobList;
-    const setJobList = props.setJobList;
-
+    const saveWork = props.saveWork;
+    
+    const initialState = {
+        title: '',
+        company: '',
+        from: '',
+        to: '',
+        duties: '',
+      };
+    
+    const [workInfo, setWorkInfo] = React.useState(initialState);
+    
     function handleChange(e) {
         const {name, value} = e.target;
-        setWorkExperience(prevData => {
-            return {
-                ...prevData,
-                [name]: value
-            }
-        })
+        setWorkInfo((prevInfo) => ({
+            ...prevInfo,
+            [name]: value
+        }));
     };
 
-    function addJobSlot(e) {
-        e.preventDefault();
-        const newList = jobList.concat({
-            id: uuidv4(), 
-            company: workExperience.company, 
-            beginDate: workExperience.beginDate, 
-            endDate: workExperience.endDate, 
-            duties: workExperience.duties 
-        });
-
-        setJobList(newList);
-
-        setWorkExperience({})
+    function resetState() {
+        setWorkInfo(initialState);
     }
-    
-    return (
-        <div className="work-exp-form" key={props.id}>
 
-            <input
+    function submitWork(e) {
+        e.preventDefault();
+        props.saveWork(workInfo);
+        resetState();
+      };
+
+    return (
+        <div>
+            <h3 className="work-exp-title">Work Experience:</h3>
+            <input 
+                type="text"
+                className="title"
+                placeholder="Job Title"
+                onChange={handleChange}
+                name="title"
+                value={workInfo.title}
+            />
+            <input 
                 type="text"
                 className="company"
                 placeholder="Company Name"
                 onChange={handleChange}
                 name="company"
-                defaultValue={workExperience.company}
+                value={workInfo.company}
             />
-
-            <input
+            <input 
                 type="text"
-                className="begin-date"
-                placeholder="Begin date (mm/yy)"
+                className="start-date"
+                placeholder="Start Date (mm/yy)"
                 onChange={handleChange}
-                name="beginDate"
-                defaultValue={workExperience.beginDate}
+                name="from"
+                value={workInfo.from}
             />
-
-            <input
+            <input 
                 type="text"
                 className="end-date"
                 placeholder="End Date (mm/yy)"
                 onChange={handleChange}
-                name="endDate"
-                defaultValue={workExperience.endDate}
+                name="to"
+                value={workInfo.to}
             />
-
-            <textarea
+            <textarea 
                 type="text"
                 className="duties"
                 placeholder="Job Duties"
                 onChange={handleChange}
                 name="duties"
-                defaultValue={workExperience.duties}
+                value={workInfo.duties}
             />
-
-            <button
-                onClick={addJobSlot}
-                className="add-slot-button" 
-            > Add Job </button>
-
+            <button 
+                className="add-job-button"
+                onClick={submitWork}
+            > Save Job </button>
         </div>
     )
 }

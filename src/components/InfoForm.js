@@ -1,7 +1,7 @@
 import React from "react"
 import Personal from "./Personal"
 import Education from "./Education"
-import WorkExperience from "./WorkExperience"
+import WorkExp from "./WorkExp"
 
 export default function InfoForm(props) {
     return (
@@ -16,10 +16,14 @@ export default function InfoForm(props) {
                 setEducationData={props.setEducationData}
             />
 
-            <WorkExperience 
+            <WorkExp 
                 workExperience={props.workExperience}
                 setWorkExperience={props.setWorkExperience}
+                workExp={props.workExp}
+                addWorkExp={props.addWorkExp}
+                showCV={props.showCV}
             />
+            
         </div>
     )
 }

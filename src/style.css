@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 .app {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    font-family: 'Roboto', sans-serif;
 }
 
 
 .personal-info,
 .education-info,
-.work-experience {
+.work-exp {
     background-color: rgb(122, 255, 233);
     display: flex;
     margin: 1em;
@@ -19,15 +23,15 @@
 
 .personal-title,
 .education-title,
-.work-experience-title {
+.work-exp-title {
     margin: 0 0 .5em .5em;
     padding: 0;
     text-decoration: underline;
 }
 .personal-info > input,
 .education-info > input,
-.work-exp-form > input,
-.work-exp-form > textarea {
+.work-exp input,
+.work-exp textarea {
     margin: .5em;
     border-style: none;
     background-color: rgb(255, 246, 117);
@@ -36,6 +40,7 @@
 }
 
 .work-exp-form {
+    display: flex;
     border: 1px solid black;
     border-radius: 5px;
     margin: 5px;
@@ -46,8 +51,49 @@
     width: 19em;
 }
 
-.add-slot-button {
-    margin: 2px;
+.show-cv {
     width: fit-content;
+}
+
+button {
+    position: relative;
     align-self: center;
+    margin: 2px;
+}
+
+.full-cv {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cv-personal {
+    
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0;
+    align-items: center;
+}
+
+.cv-name {
+    align-self: center;
+    align-items: center;
+}
+
+.cv-phone-email {
+    font-weight: lighter;
+    margin: auto;
+}
+
+.cv-work-history {
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}
+
+.job-card {
+    padding: 0;
+    border: 1px dashed black;
 }

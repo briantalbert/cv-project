@@ -1,7 +1,4 @@
 import React from "react";
-import Personal from "./components/Personal"
-import Education from "./components/Education"
-import WorkExperience from "./components/WorkExperience"
 import FullCV from "./components/FullCV"
 import "./style.css"
 import InfoForm from "./components/InfoForm";
@@ -28,6 +25,13 @@ export default function App() {
     duties: ''
   });
 
+  const [workExpList, addWorkExp] = React.useState([]);
+  const [displayCV, setDisplay] = React.useState(false);
+
+  function showCV() {
+    setDisplay(prevDisplay => !prevDisplay)
+  }
+
   return (
     <div className="app">
       <InfoForm
@@ -37,11 +41,16 @@ export default function App() {
         setEducationData={setEducationData}
         workExperience={workExperience}
         setWorkExperience={setWorkExperience}
+        workExp={workExpList}
+        addWorkExp={addWorkExp}
+        showCV={showCV}
       />
+      
       <FullCV 
         personalData={personalData}
         educationData={educationData} 
-        workExperience={workExperience}
+        workExperience={workExpList}
+        displayCV={displayCV}
       /> 
     </div>
   )
